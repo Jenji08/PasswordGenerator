@@ -1,0 +1,64 @@
+
+using System.Text;
+
+class Program
+{
+
+
+    static List<char> charlist = new List<char>();
+
+    static void Main(string[] args) 
+    {
+        makechars(ref charlist);
+
+        while (true)
+        {
+            Console.WriteLine("enter the length of ur password");
+            int length = 0;
+            if (int.TryParse(Console.ReadLine(), out length))
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(genPass(length));
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+        }
+   
+    }
+    
+    static string genPass(int length)
+    {
+        StringBuilder buildman = new StringBuilder();
+        Random rnd = new Random();
+        int fuck = 0;
+
+        while (fuck < length)
+        {
+            buildman.Append(charlist[rnd.Next(0, charlist.Count )]);
+            fuck++;
+
+        }
+        return buildman.ToString();
+    }
+    static void makechars(ref List<char> charlist)
+    {
+        for(char c = 'a'; c <= 'z'; c++)
+        {
+            charlist.Add(c);
+        }
+
+        for (char c = 'A'; c <= 'Z'; c++)
+        {
+            charlist.Add(c);
+        }
+
+        for (char c = '0'; c <= '9'; c++)
+        {
+            charlist.Add(c);
+        }
+
+        for (char c = '!'; c <= '?'; c++)
+        {
+            charlist.Add(c);
+        }
+    }
+}
